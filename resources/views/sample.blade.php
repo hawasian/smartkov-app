@@ -19,7 +19,7 @@
     @if(Session::has('error'))
         <p>{{ Session::get('error') }}</p>
     @endif
-    <h1>Login</h1>
+    <h1>Login Page</h1>
     <form role="form" method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
         <div class="input-group">
