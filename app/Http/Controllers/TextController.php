@@ -65,8 +65,6 @@ class TextController extends Controller{
     }
     
     public function updateJSON(){
-        $JSON = "{";
-        $JSON += "}";
         $db = \App\Text::all();
         for($j=0; $j<sizeof($db); $j++){
             $text = $db[$j] -> body;
