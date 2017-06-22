@@ -11,8 +11,8 @@ active
     @if(Session::has('error'))
         <p>{{ Session::get('error') }}</p>
     @endif
-    <h1>Change Password</h1>
-    <form role="form" method="POST" action="{{ route('reset') }}">
+    <h1>Login Page</h1>
+    <form role="form" method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-user-secret" aria-hidden="true"></i></span>
@@ -20,21 +20,13 @@ active
         </div>
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-            <input id="password" type="password" class="form-control" name="password" placeholder="Old Password">
-        </div>
-        <br />
-        <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-            <input id="password" type="password" class="form-control" name="password_new" placeholder="New Password">
-        </div>
-        <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-            <input id="password" type="password" class="form-control" name="password_confirm" placeholder="Confirm Password">
+            <input id="password" type="password" class="form-control" name="password" placeholder="Password">
         </div>
         <button type="submit" class="btn btn-primary">
             Submit
         </button>
     </form>
     
+    <a href="{{ route('change') }}">Change Password</a>
     </section>
 @stop

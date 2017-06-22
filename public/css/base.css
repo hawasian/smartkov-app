@@ -1,0 +1,168 @@
+body {
+    min-height: 100vh;
+    background-color: #090d0e;
+}
+
+.scanlines {
+    pointer-events: none;
+    position: absolute;
+    background-image: url('../img/1x3Filter.png');
+    opacity: .1;
+    width: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+}
+
+.menu{
+    position: relative;
+    height: 60%;
+}
+
+.signature{
+    position: absolute;
+    width: 100%;
+    bottom: 5px;
+    text-align:center;
+}
+.signature a{
+    text-decoration: none;
+    color: black;
+}
+
+.namespace {
+    position: relative;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    align-items: center;
+    min-height: 100px;
+    margin: 15px 0;
+    padding: 25px 15px;
+    background-color: #090d0e;
+    color: #26D928;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-bottom: solid #2d2d2d thin;
+    border-right: solid #909090 thin;
+}
+
+.input-group-addon:first-child {
+    width: 20%;
+}
+
+#desktop-nav {
+    background: #171717;
+    height: 100%;
+    position: fixed;
+}
+
+.navbar-header {
+    background-color: #171717;
+}
+
+.navbar-mobile {
+    margin-bottom: 0;
+}
+
+.navbar-mobile .navbar-nav li a, .navbar-mobile .navbar-nav > li a:focus{
+    color:#26D928;
+}
+.navbar-mobile .navbar-nav > .active > a, .navbar-mobile .navbar-nav > .active > a:hover,.navbar-mobile .navbar-nav > li:hover{
+    background-color:#26D928;
+    color:#171717;
+}
+.navbar-mobile .navbar-nav > li:hover a{
+    color:#171717;
+}
+
+.logo {
+    margin: 0 auto;
+    font-family: 'Jura', sans-serif;
+    font-size: 1.8em;
+}
+
+.mobile-logo{
+    display:inline-block;
+    font-family: 'Jura', sans-serif;
+    color:#26D928;
+    margin: 10px 20px;
+}
+
+.content{
+    min-height: 100vh
+}
+
+.blinker {
+    height: 100%;
+    background-color: #26D928;
+    -webkit-animation-name: example;
+    /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 1s;
+    /* Safari 4.0 - 8.0 */
+    -webkit-animation-iteration-count: infinite;
+    animation-name: example;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+.nav-custom {
+    height: 100%;
+    background-color: #090d0e;
+    color: #26D928;
+    padding-top: 20px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-bottom: solid #2d2d2d thin;
+    border-right: solid #909090 thin;
+}
+
+.nav-custom>li {
+    margin: 10px 0;
+}
+
+.nav-custom>li a{
+    color: #26D928;
+    font-family: 'Jura', sans-serif;
+    font-size: 1.5em;
+}
+.nav-custom li a:focus{
+    background-color: #090d0e;
+}
+.nav-custom>li a:hover, .nav-custom li.active a {
+    background-color: #26D928;
+    color: #090d0e;
+}
+
+@-webkit-keyframes example {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* Standard syntax */
+
+@keyframes example {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

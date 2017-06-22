@@ -11,27 +11,52 @@
 |
 */
 
+// Home
 Route::get('/', function () {
-    return view('sample');
-});
+    return view('home');
+})->name('home');
+
+// About
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+// Login
+Route::get('/admin', function(){
+    if(!Auth::guest()){
+        return redirect()->route('edit');
+    }else{
+        return redirect()->route('signin');
+    }
+})->name('admin');
+
 Route::get('/login', function () {
-    return view('sample');
+    return view('login');
 })->name('signin');
 
 Route::post('/login', 'AccountController@login')->name('login');
-
-Route::get('/logout', 'AccountController@logout')->name('logout')->middleware('checklogin');;
+Route::get('/logout', 'AccountController@logout')->name('logout')->middleware('checklogin');
 
 Route::get('/change', function () {
     return view('change');
 })->name('change');
-
 Route::post('/change', 'AccountController@change')->name('reset');
 
-Route::get('/pass', function () {
-    return view('welcome');
-})->name('pass')->middleware('checklogin');
+//Edit
+Route::get('/edit', function () {
+    return view('edit');
+})->name('edit');
 
-Route::get('/fail', function () {
-    return view('sample');
-})->name('fail');
+Route::get('/edit/new', function () {
+    return view('new');
+})->name('new');
+
+Route::post('/edit/new', 'TextController@addText')->name('add');
+Route::get('/edit/delete/{id}', ['uses' => 'TextController@deleteText'])->name('delete');
+Route::get('/edit/edit/{id}', ['uses' => 'TextController@editText'])->name('edittext');
+Route::post('/edit/edit/{id}', ['uses' => 'TextController@postText'])->name('posttext');
+
+
+
+
+

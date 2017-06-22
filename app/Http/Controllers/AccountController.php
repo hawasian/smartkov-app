@@ -27,12 +27,13 @@ class AccountController extends Controller{
             );
             if (Auth::validate($userdata)) {
                 if (Auth::attempt($userdata)) {
-                    return  Redirect::route('pass');
+                    return  Redirect::route('home');
                 }
             } 
             else {
                 // if any error send back with message.
                 Session::flash('error', 'Your Email and Passwords do not match'); 
+                Session::flash('email', Input::get('email')); 
                 return Redirect::route('signin');
             }
             
@@ -42,6 +43,10 @@ class AccountController extends Controller{
     public function logout(){
         Auth::logout();
         return  Redirect::route('signin');
+    }
+    
+    public function isLogin(){
+        return  !Auth::guest();
     }
     
     public function change(){
@@ -57,6 +62,7 @@ class AccountController extends Controller{
         $validator = Validator::make($data, $rules);
         if($validator->fails()){
             Session::flash('error', 'Both Email and Password Fields are Required. Ensure your new passwords match.');
+            Session::flash('email', Input::get('email')); 
             return Redirect::route('change');
         }else{
             $userdata = array(
@@ -74,6 +80,7 @@ class AccountController extends Controller{
             else {
                 // if any error send back with message.
                 Session::flash('error', 'Your Email and Passwords do not match. Ensure your new passwords match.'); 
+                Session::flash('email', Input::get('email')); 
                 return Redirect::route('change');
             }
             
