@@ -56,6 +56,7 @@ Route::get('/edit/delete/{id}', ['uses' => 'TextController@deleteText'])->name('
 Route::get('/edit/edit/{id}', ['uses' => 'TextController@editText'])->name('edittext');
 Route::post('/edit/edit/{id}', ['uses' => 'TextController@postText'])->name('posttext');
 
+Route::get('/fetch', 'TextController@updateJSON')->name('updateJSON');
 
 
 

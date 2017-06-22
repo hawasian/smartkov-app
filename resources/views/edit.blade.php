@@ -20,7 +20,7 @@ active
         <a href="{{ route('new') }}" class="btn btn-default">New Text</a>
     </div>
     <div class="col-xs-6">
-        <a class="btn btn-default">Generate JSON</a>
+        <a href="{{ route('updateJSON') }}" class="btn btn-default">Generate JSON</a>
     </div>
     <div class="col-xs-12">
         <ul class="list-group" >

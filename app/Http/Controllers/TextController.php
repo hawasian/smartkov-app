@@ -9,6 +9,7 @@ use Session;
 use Auth;
 use Hash;
 use View;
+use Storage;
 
 class TextController extends Controller{
     public function addText(){
@@ -61,5 +62,24 @@ class TextController extends Controller{
             $entry->save();
             return Redirect::route('edit');
         }
+    }
+    
+    public function updateJSON(){
+        $JSON = "{";
+        $JSON += "}";
+        $db = \App\Text::all();
+        for($j=0; $j<sizeof($db); $j++){
+            $text = $db[$j] -> body;
+            $text = preg_replace ( "[^’]", "'" ,$text);
+            $text = preg_replace ( "/[^a-z0-9']/i", " " ,$text);
+            $text = preg_replace ( "!\s+!", " " ,$text);
+            $textArray =explode(" ", $text);
+            for($i=0; $i<sizeof($textArray)-3; $i++){
+                $outArray[$textArray[$i]][$textArray[$i+1]][$textArray[$i+2]] = isset($outArray[$textArray[$i]][$textArray[$i+1]][$textArray[$i+2]]) ? $outArray[$textArray[$i]][$textArray[$i+1]][$textArray[$i+2]]+1: 1;
+            }
+        }
+            Storage::disk('local')->put('corpus.json', json_encode($outArray));
+
+        return Redirect::route('edit');
     }
 }
