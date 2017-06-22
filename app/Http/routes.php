@@ -16,6 +16,8 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+Route::post('/','TextController@generateText')->name('generate');
+
 // About
 Route::get('/about', function () {
     return view('about');

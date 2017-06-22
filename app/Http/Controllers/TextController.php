@@ -70,9 +70,10 @@ class TextController extends Controller{
         $db = \App\Text::all();
         for($j=0; $j<sizeof($db); $j++){
             $text = $db[$j] -> body;
-            $text = preg_replace ( "[^’]", "'" ,$text);
-            $text = preg_replace ( "/[^a-z0-9']/i", " " ,$text);
-            $text = preg_replace ( "!\s+!", " " ,$text);
+            $text = preg_replace( "[^’]", "'" ,$text);
+            $text = preg_replace( "/[^a-z0-9']/i", " " ,$text);
+            $text = preg_replace( "!\s+!", " " ,$text);
+            $text = strtolower($text); 
             $textArray =explode(" ", $text);
             for($i=0; $i<sizeof($textArray)-3; $i++){
                 $outArray[$textArray[$i]][$textArray[$i+1]][$textArray[$i+2]] = isset($outArray[$textArray[$i]][$textArray[$i+1]][$textArray[$i+2]]) ? $outArray[$textArray[$i]][$textArray[$i+1]][$textArray[$i+2]]+1: 1;
@@ -81,5 +82,56 @@ class TextController extends Controller{
             Storage::disk('local')->put('corpus.json', json_encode($outArray));
 
         return Redirect::route('edit');
+    }
+    public function generateText(){
+        if(!(Input::get('number') > 3)){
+            Session::flash('text', "Select a number greater than 3");
+            return Redirect::route('home');
+        }
+        $JSON = Storage::get('corpus.json');
+        $books = json_decode($JSON, true);
+        $outArray = [];
+        $book = $books;
+        $keys = array_keys($books);
+        $index = rand(0,count($keys));
+        $i = 0;
+        while($index>0){
+            $index -= count($keys[$i]);
+            if($index>0){
+                $i++;
+            }
+        }
+        $first_word = $keys[$i];
+        array_push($outArray, $first_word);
+        $keys = array_keys($books[$first_word]);
+        $index = rand(0,count($keys));
+        $i = 0;
+        while($index>0){
+            $index -= count($keys[$i]);
+            if($index>0){
+                $i++;
+            }
+        }
+        $second_word = $keys[$i];
+        array_push($outArray, $second_word);
+        
+        for($n = 0; $n<=Input::get('number')-3; $n++){
+            $keys = array_keys($books[$first_word][$second_word]);
+            $index = rand(0,count($keys));
+            $i = 0;
+            while($index>0){
+                $index -= count($keys[$i]);
+                if($index>0){
+                    $i++;
+                }
+            }
+            $third_word = $keys[$i];
+            array_push($outArray, $third_word);
+            $temp = $second_word;
+            $second_word = $third_word;
+            $first_word = $temp;
+        }
+        Session::flash('text', implode(" ",$outArray));
+        return Redirect::route('home');
     }
 }
