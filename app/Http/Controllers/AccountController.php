@@ -27,7 +27,7 @@ class AccountController extends Controller{
             );
             if (Auth::validate($userdata)) {
                 if (Auth::attempt($userdata)) {
-                    return  Redirect::route('home');
+                    return  Redirect::route('admin');
                 }
             } 
             else {

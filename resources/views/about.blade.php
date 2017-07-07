@@ -8,6 +8,6 @@ active
 
 @section('body')
     <section class="container">
-    
+
     </section>
 @stop

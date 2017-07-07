@@ -13,6 +13,7 @@ use Storage;
 
 class TextController extends Controller{
     public function addText(){
+        $this->isLog();
         $data = Input::all();
         $rules = array(
             'subject' => 'required',
@@ -32,12 +33,14 @@ class TextController extends Controller{
     }
     
     public function deleteText($id){
+        $this->isLog();
         $entry = \App\Text::find( $id);
         $entry->delete();
         return Redirect::route('edit');
     }
     
     public function editText($id){
+        $this->isLog();
         $entry = \App\Text::find( $id);
         Session::flash('id', $entry->id);
         Session::flash('subject', $entry->subject);
@@ -46,6 +49,7 @@ class TextController extends Controller{
     }
     
     public function postText($id){
+        $this->isLog();
         $data = Input::all();
         $rules = array(
             'subject' => 'required',
@@ -64,12 +68,20 @@ class TextController extends Controller{
         }
     }
     
-    public function updateJSON(){
+    private function generateJSON(){
         $db = \App\Text::all();
         for($j=0; $j<sizeof($db); $j++){
             $text = $db[$j] -> body;
             $text = preg_replace( "[^’]", "'" ,$text);
-            $text = preg_replace( "/[^a-z0-9']/i", " " ,$text);
+            $text = preg_replace( "[\.]", " . " ,$text);
+            $text = preg_replace( "[\,]", " , " ,$text);
+            $text = preg_replace( "[\!]", " ! " ,$text);
+            $text = preg_replace( "[\?]", " ? " ,$text);
+            $text = preg_replace( "[\—]", " " ,$text);
+            $text = preg_replace( "[\-]", " " ,$text);
+            $text = preg_replace( "[\–]", " " ,$text);
+            $text = preg_replace( "[\-]", " " ,$text);
+            $text = preg_replace( "[\"]", " " ,$text);
             $text = preg_replace( "!\s+!", " " ,$text);
             $text = strtolower($text); 
             $textArray =explode(" ", $text);
@@ -78,13 +90,24 @@ class TextController extends Controller{
             }
         }
             Storage::disk('local')->put('corpus.json', json_encode($outArray));
-
+    }
+    private function isLog(){
+        if(Auth::guest()){
+            return Redirect::route('signin');
+        }
+    }
+    public function updateJSON(){
+        $this->isLog();
+        $this->generateJSON();
         return Redirect::route('edit');
     }
     public function generateText(){
         if(!(Input::get('number') > 3)){
-            Session::flash('text', "Select a number greater than 3");
+            Session::flash('error', "Select a number greater than 3");
             return Redirect::route('home');
+        }
+        if(!(Storage::disk('local')->exists('corpus.json'))){
+            $this->generateJSON();
         }
         $JSON = Storage::get('corpus.json');
         $books = json_decode($JSON, true);

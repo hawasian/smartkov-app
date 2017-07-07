@@ -46,11 +46,19 @@ Route::post('/change', 'AccountController@change')->name('reset');
 
 //Edit
 Route::get('/edit', function () {
-    return view('edit');
+    if(!Auth::guest()){
+        return view('edit');
+    }else{
+        return redirect()->route('signin');
+    }
 })->name('edit');
 
 Route::get('/edit/new', function () {
-    return view('new');
+    if(!Auth::guest()){
+        return view('new');
+    }else{
+        return redirect()->route('signin');
+    }
 })->name('new');
 
 Route::post('/edit/new', 'TextController@addText')->name('add');
