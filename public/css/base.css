@@ -65,6 +65,8 @@ body {
 
 .navbar-header {
     background-color: #171717;
+    position: fixed;
+    width: 98vw;
 }
 
 .navbar-mobile {

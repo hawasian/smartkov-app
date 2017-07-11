@@ -7,21 +7,22 @@ active
 @stop
 
 @section('body')
-    <section class="container">
-    
-    <h1>SMARTKOV...</h1>
-    <p>A Smarter Markov Chain Text Generator for creating Memos from the President</p>
-    <form id="input" role="form" method="POST" action="{{ route('generate') }}">
-        {{ csrf_field() }}
-        <input id="number" type="text" class="form-control" name="number" placeholder="Number of Words"/>
-        <button id="memomaker" type="submit" class="btn btn-primary">
-            Get The Memo!
-        </button>
+    <section id="main" class="container">
+    <div id="plate">
+        <h1 id="title">SMARTKOV...</h1>
+        <p id="subtitle">A Smarter Markov Chain Text Generator for creating Memos from the President</p>
+        <form id="input" role="form" method="POST" action="{{ route('generate') }}">
+            {{ csrf_field() }}
+            <input id="number" type="text" class="form-control" name="number" placeholder="Number of Words"/>
+            <button id="memomaker" type="submit" class="btn btn-primary">
+                Get The Memo!
+            </button>
     </form>
+    </div>
     <?php
     
     $properNouns=["i","america","donald","trump","american","americans","american's","america's","january","february","march","april","may","june","july","august","september","october","november","december","hilary","clinton"];
-    
+    $imgURLs=["http://combatblog.net/wp-content/uploads/2016/07/donald-trump-grow-up.jpg","http://liberalplug.com/wp-content/uploads/2017/02/19-donald-trump-convention.w710.h473-665x443.jpg","http://static3.businessinsider.com/image/58efe0d68af578622c8b7f2d/trump-and-his-white-house-have-made-some-embarrassing-spelling-mistakes--here-are-the-worst-ones.jpg","http://i.dailymail.co.uk/i/pix/2016/01/22/00/3071834E00000578-3410687-image-a-19_1453423872067.jpg","https://pbs.twimg.com/profile_images/684089818247225344/6OozAYxr.jpg","http://i.telegraph.co.uk/multimedia/archive/00677/hair404a_677734n.jpg","http://i.dailymail.co.uk/i/pix/2016/10/10/02/39411EA400000578-3829999-_Your_hat_strategically_dipped_below_one_eye_Images_of_Trump_wea-m-14_1476061487296.jpg"];
     $text = Session::get('text');
     $textArray = explode(" ",$text);
     $n = 0;
@@ -29,13 +30,20 @@ active
     $temp = [];
     $out = [];
     $capflag = true;
+    $caplockflag = false;
     foreach ($textArray as $word) {
+        if((rand (1 , 100)<=10 && $caplockflag) || (rand (1 , 100)<=10 && !$caplockflag)){
+            $caplockflag = !$caplockflag;
+        }
         if($capflag){
             $word = ucwords($word);
             $capflag = false;
         }
-        if(in_array($word, $properNouns)){
+        if(in_array($word, $properNouns) || (strlen($word)==1 && $word != 'a')){
             $word = ucwords($word);
+        }
+        if($caplockflag){
+            $word = strtoupper($word);
         }
         if($len - strlen($word) <= 0){
             $x = implode(" ",$temp);
@@ -43,7 +51,7 @@ active
             $temp = [];
             $len = 137;
         }
-        $len -= strlen($word);
+        $len -= (strlen($word)+1);
         if($word == '.' ||  $word == '!'|| $word == '?'){
             $capflag = true;
         }
@@ -65,12 +73,12 @@ active
         $timeout = $time."h";
     }
     ?>
-    <div id="memo" class="row">
-        <section class="tweet col col-xs-10">
-            <div class="pic col-xs-3 col-md-2 col-lg-1">
+    <div id="memo">
+        <section class="tweet col col-xs-7">
+            <div class="pic col-xs-1 col-md-1 col-lg-1">
                 <img src="https://pbs.twimg.com/profile_images/874276197357596672/kUuht00m_bigger.jpg"></img>
             </div>
-            <div class="col col-xs-8 col-md-9 col-lg-10">
+            <div class="col col-xs-10 col-md-10 col-lg-10">
                 <h4><b class="DJT">Donald J. Trump</b> <i class="fa fa-check-circle" aria-hidden="true"></i><span class="grey"> @realSmartkov - {{ $timeout }}</span></h4>
                 <p>
                 @if($key != 0)
@@ -81,14 +89,18 @@ active
                 ...
                 @endif
                 </p>
-                <section class="col col-xs-12 tweet-tabs">
+                @if((rand (1 , 100)<=10))
+                <img id="tweetpic" src="{{$imgURLs[rand (0 , sizeof($imgURLs)-1)]}}"></img>
+                @endif
+                
+                <section class="col col-xs-8 tweet-tabs">
                     <div class="ttcom col col-xs-3"><i class="fa fa-comment-o" aria-hidden="true"></i><span class="tweet-tab-text">{{ (rand (10 , 100) / 10)."k"}}</span></div>
                     <div class="ttref col col-xs-3"><i class="fa fa-refresh" aria-hidden="true"></i><span class="tweet-tab-text">{{ (rand (10 , 100) / 10)."k"}}</span></div>
                     <div class="tthrt col col-xs-3"><i class="fa fa-heart-o" aria-hidden="true"></i><span class="tweet-tab-text">{{ (rand (10 , 100) / 10)."k"}}</span></div>
                     <div class="ttenv col col-xs-3"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="tweet-tab-text">{{ (rand (10 , 100) / 10)."k"}}</span></div>
                 </section>
             </div>
-            <div class="col-sm-1 hidden-xs downchev">
+            <div class="col-sm-1 downchev">
                 <i class="fa fa-chevron-down grey arrow" aria-hidden="true"></i>
             </div>
         </section>
@@ -98,8 +110,16 @@ active
     </section>
     
     <style type="text/css">
+        #title{
+            font-family: 'Jura', sans-serif;
+            color: #26D928;
+        }
+        #subtitle{
+            font-family: 'Ubuntu', sans-serif;
+            color: #26D928;
+        }
         #input{
-            margin-bottom: 100px;
+            margin: 30px 0;
         }
         #input input, #input button{
             display: inline-block;
@@ -108,16 +128,30 @@ active
             width:20%;
             min-width:160px;
         }
+        #memo{
+            display:flex;
+        }
         #memomaker{
             margin-top:-3px;
         }
-        
+        #main{
+            min-width:700px;
+        }
+        #plate{
+            text-align: center;
+        }
+        #tweetpic{
+            margin-bottom:10px;
+            border-radius:5px;
+            max-width:100%;
+        }
         .tweet{
             background:white;
             padding:7px 0px;
             z-index:15;
-            margin: 1px 0;
+            margin: 1px auto;
             border-radius:3px;
+            min-width: 646px;
         }
         .pic{
             margin-top:10px;
@@ -125,6 +159,8 @@ active
         }
         .pic img{
             border-radius:50%;
+            height:48px;
+            width:48px;
         }
         input[type=text],
         input[type=email],
@@ -132,10 +168,16 @@ active
             width: 100%;
             background-color: #1d291d;
             color: #26D928;
-            font-size: 1.25em;
+            font-size: 1.05em;
             padding: 7px;
             border: thin #1ead20 solid;
             outline-color: #26D928;
+            font-family: 'Ubuntu', sans-serif;
+        }
+        input[type="text"]:focus{
+            border-color: rgba(126, 239, 104, 0.8);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6);
+            outline: 0 none;
         }
         .tweet-tabs{
             font-weight:bold;
