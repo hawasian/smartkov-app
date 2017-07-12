@@ -14,7 +14,7 @@ active
         <form id="input" role="form" method="POST" action="{{ route('generate') }}">
             {{ csrf_field() }}
             <input id="number" type="text" class="form-control" name="number" placeholder="Number of Words"/>
-            <button id="memomaker" type="submit" class="btn btn-primary">
+            <button id="memomaker" type="submit" class="btn btn-blk">
                 Get The Memo!
             </button>
     </form>
@@ -89,15 +89,15 @@ active
                 ...
                 @endif
                 </p>
-                @if((rand (1 , 100)<=10))
+                @if((rand (1 , 100)<=20))
                 <img id="tweetpic" src="{{$imgURLs[rand (0 , sizeof($imgURLs)-1)]}}"></img>
                 @endif
                 
                 <section class="col col-xs-8 tweet-tabs">
-                    <div class="ttcom col col-xs-3"><i class="fa fa-comment-o" aria-hidden="true"></i><span class="tweet-tab-text">{{ (rand (10 , 100) / 10)."k"}}</span></div>
-                    <div class="ttref col col-xs-3"><i class="fa fa-refresh" aria-hidden="true"></i><span class="tweet-tab-text">{{ (rand (10 , 100) / 10)."k"}}</span></div>
-                    <div class="tthrt col col-xs-3"><i class="fa fa-heart-o" aria-hidden="true"></i><span class="tweet-tab-text">{{ (rand (10 , 100) / 10)."k"}}</span></div>
-                    <div class="ttenv col col-xs-3"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="tweet-tab-text">{{ (rand (10 , 100) / 10)."k"}}</span></div>
+                    <div class="ttcom col col-xs-3"><i class="fa fa-comment-o" aria-hidden="true"></i><br /><span class="tweet-tab-text">{{ (rand (10 , 100) / 10)."k"}}</span></div>
+                    <div class="ttref col col-xs-3"><i class="fa fa-refresh" aria-hidden="true"></i><br /><span class="tweet-tab-text">{{ (rand (10 , 100) / 10)."k"}}</span></div>
+                    <div class="tthrt col col-xs-3"><i class="fa fa-heart-o" aria-hidden="true"></i><br /><span class="tweet-tab-text">{{ (rand (10 , 100) / 10)."k"}}</span></div>
+                    <div class="ttenv col col-xs-3"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
                 </section>
             </div>
             <div class="col-sm-1 downchev">
@@ -179,6 +179,18 @@ active
             box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6);
             outline: 0 none;
         }
+        input[type=text]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+            color: #748b75;
+        }
+        input[type=text]::-moz-placeholder { /* Firefox 19+ */
+            color: #748b75;
+        }
+        input[type=text]:-ms-input-placeholder { /* IE 10+ */
+            color: #748b75;
+        }
+        input[type=text]:-moz-placeholder { /* Firefox 18- */
+            color: #748b75;
+        }
         .tweet-tabs{
             font-weight:bold;
             color:grey;
@@ -218,6 +230,51 @@ active
         }
         .downchev{
             text-align:right;
+        }
+        .btn-blk { 
+          color: #26D928; 
+          background-color: #090D0E; 
+          border: thin solid #26D928; 
+        } 
+         
+        .btn-blk:hover, 
+        .btn-blk:focus, 
+        .btn-blk:active, 
+        .btn-blk.active, 
+        .open .dropdown-toggle.btn-blk { 
+          color: #26D928; 
+          background-color: #364036; 
+          border-color: #26D928; 
+        } 
+         
+        .btn-blk:active, 
+        .btn-blk.active, 
+        .open .dropdown-toggle.btn-blk { 
+          background-image: none; 
+        } 
+         
+        .btn-blk.disabled, 
+        .btn-blk[disabled], 
+        fieldset[disabled] .btn-blk, 
+        .btn-blk.disabled:hover, 
+        .btn-blk[disabled]:hover, 
+        fieldset[disabled] .btn-blk:hover, 
+        .btn-blk.disabled:focus, 
+        .btn-blk[disabled]:focus, 
+        fieldset[disabled] .btn-blk:focus, 
+        .btn-blk.disabled:active, 
+        .btn-blk[disabled]:active, 
+        fieldset[disabled] .btn-blk:active, 
+        .btn-blk.disabled.active, 
+        .btn-blk[disabled].active, 
+        fieldset[disabled] .btn-blk.active { 
+          background-color: #090D0E; 
+          border-color: #26D928; 
+        } 
+         
+        .btn-blk .badge { 
+          color: #090D0E; 
+          background-color: #26D928; 
         }
     </style>
 @stop

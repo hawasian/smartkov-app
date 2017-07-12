@@ -137,6 +137,9 @@ class TextController extends Controller{
         array_push($outArray, $second_word);
         
         for($n = 0; $n<=Input::get('number')-3; $n++){
+            if(!array_key_exists($second_word,$books[$first_word])){
+                break;
+            }
             $keys = array_keys($books[$first_word][$second_word]);
             $index = rand(0,count($keys));
             $i = 0;
