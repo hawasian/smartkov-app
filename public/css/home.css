@@ -1,0 +1,166 @@
+#title{
+            font-family: 'Jura', sans-serif;
+            color: #26D928;
+        }
+        #subtitle{
+            font-family: 'Ubuntu', sans-serif;
+            color: #26D928;
+        }
+        #input{
+            margin: 30px 0;
+        }
+        #input input, #input button{
+            display: inline-block;
+        }
+        #number{
+            width:20%;
+            min-width:160px;
+        }
+        #memo{
+            display:flex;
+        }
+        #memomaker{
+            margin-top:-3px;
+        }
+        #main{
+            min-width:700px;
+        }
+        #plate{
+            text-align: center;
+        }
+        #tweetpic{
+            margin-bottom:10px;
+            border-radius:5px;
+            max-width:100%;
+        }
+        .tweet{
+            background:white;
+            padding:7px 0px;
+            z-index:15;
+            margin: 1px auto;
+            border-radius:3px;
+            min-width: 646px;
+        }
+        .pic{
+            margin-top:10px;
+            text-align: right;
+        }
+        .pic img{
+            border-radius:50%;
+            height:48px;
+            width:48px;
+        }
+        input[type=text],
+        input[type=email],
+        textarea {
+            width: 100%;
+            background-color: #1d291d;
+            color: #26D928;
+            font-size: 1.05em;
+            padding: 7px;
+            border: thin #1ead20 solid;
+            outline-color: #26D928;
+            font-family: 'Ubuntu', sans-serif;
+        }
+        input[type="text"]:focus{
+            border-color: rgba(126, 239, 104, 0.8);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6);
+            outline: 0 none;
+        }
+        input[type=text]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+            color: #748b75;
+        }
+        input[type=text]::-moz-placeholder { /* Firefox 19+ */
+            color: #748b75;
+        }
+        input[type=text]:-ms-input-placeholder { /* IE 10+ */
+            color: #748b75;
+        }
+        input[type=text]:-moz-placeholder { /* Firefox 18- */
+            color: #748b75;
+        }
+        .tweet-tabs{
+            font-weight:bold;
+            color:grey;
+        }
+        .tweet-tabs i{
+            margin-right:15px;
+            font-size:1.5em;
+            font-weight:normal;
+        }
+        .ttcom:hover{
+            color:#1DA1F2;
+        }
+        .ttref:hover{
+            color:#17BF63;
+        }
+        .tthrt:hover{
+            color:#E33A6E;
+        }
+        .ttenv:hover{
+            color:#1DA1F2;
+        }
+        .fa-check-circle{
+            color:#1DA1F2;
+        }
+        .grey{
+            color:grey;
+        }
+        .DJT:hover{
+            color:#1DA1F2;
+            text-decoration:underline;
+        }
+        .arrow:hover{
+            color:#1DA1F2
+        }
+        .blue{
+            color:#1DA1F2
+        }
+        .downchev{
+            text-align:right;
+        }
+        .btn-blk { 
+          color: #26D928; 
+          background-color: #090D0E; 
+          border: thin solid #26D928; 
+        } 
+         
+        .btn-blk:hover, 
+        .btn-blk:focus, 
+        .btn-blk:active, 
+        .btn-blk.active, 
+        .open .dropdown-toggle.btn-blk { 
+          color: #26D928; 
+          background-color: #364036; 
+          border-color: #26D928; 
+        } 
+         
+        .btn-blk:active, 
+        .btn-blk.active, 
+        .open .dropdown-toggle.btn-blk { 
+          background-image: none; 
+        } 
+         
+        .btn-blk.disabled, 
+        .btn-blk[disabled], 
+        fieldset[disabled] .btn-blk, 
+        .btn-blk.disabled:hover, 
+        .btn-blk[disabled]:hover, 
+        fieldset[disabled] .btn-blk:hover, 
+        .btn-blk.disabled:focus, 
+        .btn-blk[disabled]:focus, 
+        fieldset[disabled] .btn-blk:focus, 
+        .btn-blk.disabled:active, 
+        .btn-blk[disabled]:active, 
+        fieldset[disabled] .btn-blk:active, 
+        .btn-blk.disabled.active, 
+        .btn-blk[disabled].active, 
+        fieldset[disabled] .btn-blk.active { 
+          background-color: #090D0E; 
+          border-color: #26D928; 
+        } 
+         
+        .btn-blk .badge { 
+          color: #090D0E; 
+          background-color: #26D928; 
+        }

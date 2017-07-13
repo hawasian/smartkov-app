@@ -1,0 +1,67 @@
+h1{
+            font-family: 'Jura', sans-serif;
+            color:#26D928;
+            text-align: center;
+        }
+        .list-group-item{
+            color:#26D928;
+            background-color: #090D0E; 
+            font-family: 'Jura', sans-serif;
+            font-size:1.5em;
+            padding: 15px 5px 15px 50px;
+            text-overflow: ellipsis;
+            border-top: 1px solid #26D928;
+            border-bottom: 1px solid #26D928;
+            border-left: 2px dashed #26D928;
+            border-right: 2px dashed #26D928;
+        }
+        .btn-col{
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .btn-blk { 
+          color: #26D928; 
+          background-color: #090D0E; 
+          border: thin solid #26D928; 
+          font-family: 'Ubuntu', sans-serif;
+        } 
+         
+        .btn-blk:hover, 
+        .btn-blk:focus, 
+        .btn-blk:active, 
+        .btn-blk.active, 
+        .open .dropdown-toggle.btn-blk { 
+          color: #26D928; 
+          background-color: #364036; 
+          border-color: #26D928; 
+        } 
+         
+        .btn-blk:active, 
+        .btn-blk.active, 
+        .open .dropdown-toggle.btn-blk { 
+          background-image: none; 
+        } 
+         
+        .btn-blk.disabled, 
+        .btn-blk[disabled], 
+        fieldset[disabled] .btn-blk, 
+        .btn-blk.disabled:hover, 
+        .btn-blk[disabled]:hover, 
+        fieldset[disabled] .btn-blk:hover, 
+        .btn-blk.disabled:focus, 
+        .btn-blk[disabled]:focus, 
+        fieldset[disabled] .btn-blk:focus, 
+        .btn-blk.disabled:active, 
+        .btn-blk[disabled]:active, 
+        fieldset[disabled] .btn-blk:active, 
+        .btn-blk.disabled.active, 
+        .btn-blk[disabled].active, 
+        fieldset[disabled] .btn-blk.active { 
+          background-color: #090D0E; 
+          border-color: #26D928; 
+        } 
+         
+        .btn-blk .badge { 
+          color: #090D0E; 
+          background-color: #26D928; 
+        }

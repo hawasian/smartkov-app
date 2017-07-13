@@ -28,7 +28,12 @@ body {
 }
 .signature a{
     text-decoration: none;
-    color: black;
+    color: #364036;
+}
+
+.signature a:hover,.signature a:focus{
+    text-decoration: none;
+    color: #26D928;
 }
 
 .namespace {
